@@ -5,70 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mines Gambling Game</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(to bottom, #1e3c72, #2a5298);
-            color: white;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(5, 60px);
-            gap: 5px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .cell {
-            width: 60px;
-            height: 60px;
-            background: #444;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            cursor: pointer;
-            border: 2px solid #fff;
-            transition: background 0.3s ease;
-        }
-        .cell:hover {
-            background: #555;
-        }
-        .cell.revealed {
-            background: lightgreen;
-            cursor: default;
-        }
-        .cell.mine {
-            background: red;
-        }
-        .hidden {
-            display: none;
-        }
-        .end-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        button {
-            background: #ffcc00;
-            border: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background 0.3s ease;
-        }
-        button:hover {
-            background: #ffdd44;
-        }
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(5, 60px); gap: 5px; justify-content: center; margin-top: 20px; }
+        .cell { width: 60px; height: 60px; background: #ccc; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; border: 2px solid #444; }
+        .cell.revealed { background: lightgreen; cursor: default; }
+        .cell.mine { background: red; }
+        .hidden { display: none; }
+        .end-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
