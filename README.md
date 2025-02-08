@@ -36,7 +36,7 @@
 
         function createGrid() {
             const grid = document.getElementById("grid");
-            grid.innerHTML = "";
+            grid.innerHTML = "";  // Clear the grid before creating it again
             for (let i = 0; i < gridSize * gridSize; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -89,7 +89,7 @@
             generateMine();  // Ensure the mine is generated before the grid is created.
             createGrid();    // Now, create the grid and bind the click events.
             document.getElementById("status").innerText = `Balance: $${balance}`;
-            document.getElementById("endScreen").classList.add("hidden");
+            document.getElementById("endScreen").classList.add("hidden"); // Hide end screen after restart
         }
 
         generateMine();   // Ensure the mine index is set before grid creation.
@@ -97,4 +97,3 @@
     </script>
 </body>
 </html>
-
