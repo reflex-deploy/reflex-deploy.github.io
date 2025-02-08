@@ -86,14 +86,15 @@
         function restartGame() {
             revealedCells = 0;
             balance = 100;
-            generateMine();
-            createGrid();
+            generateMine();  // Ensure the mine is generated before the grid is created.
+            createGrid();    // Now, create the grid and bind the click events.
             document.getElementById("status").innerText = `Balance: $${balance}`;
             document.getElementById("endScreen").classList.add("hidden");
         }
 
-        generateMine();
-        createGrid();
+        generateMine();   // Ensure the mine index is set before grid creation.
+        createGrid();     // Now, create the grid and bind the click events.
     </script>
 </body>
 </html>
+
