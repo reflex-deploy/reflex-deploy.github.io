@@ -29,7 +29,6 @@
         let balance = 100;
         let mineIndex;
         let revealedCells = 0;
-        let gameFrozen = false;
 
         function generateMine() {
             mineIndex = Math.floor(Math.random() * (gridSize * gridSize));
@@ -48,12 +47,10 @@
         }
 
         function revealCell(index) {
-            if (gameFrozen) return;
             const cell = document.querySelector(`.cell[data-index='${index}']`);
             if (!cell || cell.classList.contains("revealed")) return;
 
             if (index === mineIndex) {
-                gameFrozen = true;
                 cell.classList.add("mine");
                 cell.innerHTML = "💣";
                 balance = Math.floor(balance / 2);
@@ -80,7 +77,6 @@
         function restartGame() {
             revealedCells = 0;
             balance = 100;
-            gameFrozen = false;
             generateMine();
             createGrid();
             document.getElementById("status").innerText = `Balance: $${balance}`;
