@@ -55,7 +55,7 @@
                 cell.innerHTML = "💣";
                 balance = Math.floor(balance / 2);
                 document.getElementById("status").innerText = `You hit the mine! Balance: $${balance}`;
-                setTimeout(restartGame, 1500);
+                checkEndGame();
             } else {
                 cell.classList.add("revealed");
                 cell.innerHTML = "💎";
@@ -70,7 +70,16 @@
             if (revealedCells === gridSize * gridSize - 1) {
                 document.getElementById("endMessage").innerText = "Lucky Pick!";
                 document.getElementById("endScreen").classList.remove("hidden");
-                setTimeout(restartGame, 1500);
+            }
+        }
+
+        function checkEndGame() {
+            if (balance <= 0) {
+                document.getElementById("endMessage").innerText = "Game Over! You're out of money!";
+                document.getElementById("endScreen").classList.remove("hidden");
+            } else if (balance >= 1000) {
+                document.getElementById("endMessage").innerText = "99% of gamblers quit before winning!";
+                document.getElementById("endScreen").classList.remove("hidden");
             }
         }
 
