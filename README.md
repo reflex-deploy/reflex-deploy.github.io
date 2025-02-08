@@ -10,7 +10,8 @@
         .cell { width: 60px; height: 60px; background: #ccc; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; border: 2px solid #444; }
         .cell.revealed { background: lightgreen; cursor: default; }
         .cell.mine { background: red; }
-        button { margin-top: 20px; padding: 10px; font-size: 16px; }
+        .hidden { display: none; }
+        .end-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
@@ -19,6 +20,10 @@
     <div class="grid" id="grid"></div>
     <p id="status">Balance: $100</p>
     <button onclick="restartGame()">Restart Game</button>
+    <div id="endScreen" class="end-screen hidden">
+        <h2 id="endMessage"></h2>
+        <button onclick="restartGame()">Play Again</button>
+    </div>
     <script>
         const gridSize = 5;
         let balance = 100;
@@ -49,22 +54,37 @@
                 cell.classList.add("mine");
                 cell.innerHTML = "💣";
                 balance -= 10;
-                document.getElementById("status").innerText = `You hit a mine! Balance: $${balance}`;
-                setTimeout(restartGame, 1000);
             } else {
                 cell.classList.add("revealed");
                 cell.innerHTML = "✔";
                 revealedCells++;
                 balance += 5;
-                document.getElementById("status").innerText = `Balance: $${balance}`;
             }
+
+            document.getElementById("status").innerText = `Balance: $${balance}`;
+            checkGameStatus();
+        }
+
+        function checkGameStatus() {
+            if (balance <= 0) {
+                showEndScreen("Game Over! You lost all your money.");
+            } else if (balance >= 1000) {
+                showEndScreen("99% of gamblers quit before winning!");
+            }
+        }
+
+        function showEndScreen(message) {
+            document.getElementById("endMessage").innerText = message;
+            document.getElementById("endScreen").classList.remove("hidden");
         }
 
         function restartGame() {
             revealedCells = 0;
+            balance = 100;
             generateMines();
             createGrid();
             document.getElementById("status").innerText = `Balance: $${balance}`;
+            document.getElementById("endScreen").classList.add("hidden");
         }
 
         generateMines();
